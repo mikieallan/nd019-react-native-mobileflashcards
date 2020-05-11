@@ -123,20 +123,24 @@ class Quiz extends Component {
 
 	render() {
 		const { questions } = this.props.deck
-		const rotateX = this.state.animate.interpolate({
-			inputRange: [0, 0.5, 1],
-			outputRange: ['0deg', '180deg', '0deg']
-		})
 
 		return (
 			<View style={styles.container}>
-				<View>
-					<Text style={{ fontSize: 15, fontWeight: 'bold' }}>{this.state.correct}/{questions.length}</Text>
-				</View>
-				<Animated.View style={{ flex: 1, transform: [{rotateX}] }}>
-					{(this.state.showAnswer) ? this.showAnswer(questions) : this.showQuestion(questions)}
-				</Animated.View>
-				{this.showQuizButtons(questions)}
+				{ questions.length > 0 ?
+					<View>
+						<View>
+							<Text style={{ fontSize: 15, fontWeight: 'bold' }}>{this.state.correct}/{questions.length}</Text>
+						</View>
+						<Animated.View style={{ flex: 1 }}>
+							{(this.state.showAnswer) ? this.showAnswer(questions) : this.showQuestion(questions)}
+						</Animated.View>
+						{this.showQuizButtons(questions)}
+					</View>
+					
+					: <View style={styles.container, {flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+						<Text style={{ fontSize: 48, textAlign: 'center' }}>No questions entered</Text>
+					</View>
+				}
 			</View>
 		)
 	}

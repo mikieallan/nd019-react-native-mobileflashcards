@@ -54,17 +54,16 @@ class DeckDetails extends Component {
 						}} >
 						<Text style={styles.submitBtnText}>Add Card</Text>
 					</TouchableOpacity>
-					{deck.questions.length > 0 && 
-						<TouchableOpacity 
-							style={(Platform.OS === 'ios') ? styles.iosSubmitBtn : styles.AndroidBtn }
-							disabled={deck.questions.length===0}
-							onPress={() => {
-								this.props.navigation.navigate('Quiz', { title: deck.title })
-							}}
-						>
-							<Text style={styles.submitBtnText}>Start Quiz</Text> 
-						</TouchableOpacity>
-					}
+					
+					<TouchableOpacity 
+						style={(Platform.OS === 'ios') ? styles.iosSubmitBtn : styles.AndroidBtn }
+						onPress={() => {
+							this.props.navigation.navigate('Quiz', { title: deck.title })
+						}}
+					>
+						<Text style={styles.submitBtnText}>Start Quiz</Text> 
+					</TouchableOpacity>
+					
 				</View>
 			</View>
 		)
